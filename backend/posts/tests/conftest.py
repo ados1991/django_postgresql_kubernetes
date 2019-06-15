@@ -12,3 +12,11 @@ def seed_data_for_db_delete():
 @pytest.mark.django_db
 def seed_data_for_db_update():
     Post(user_id=3, title='dummy', body='dummy').save()
+
+
+@pytest.fixture
+@pytest.mark.django_db
+def seed_data_for_api():
+    Post(user_id=3, title='dummy', body='dummy').save()
+    Post(user_id=4, title='dummy', body='dummy').save()
+    Post(user_id=4, title='dummy', body='dummy').save()
