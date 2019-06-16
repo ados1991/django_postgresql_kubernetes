@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: post
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: post-container
+  template:
+    metadata:
+      labels:
+        app: post-container
+    spec:
+      containers:
+        - name: post
+          image: ados1991/post:1.0.1
+          ports:
+            - containerPort: 8000
+          env:
+            - name: DATABASE_USER
+              valueFrom:
+                secretKeyRef:
+                  name: postgresql-credentials
+                  key: user
+
+            - name: DATABASE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgresql-credentials
+                  key: password
+
+            - name: DATABASE_SERVICE_HOST
+              value: postgres-service
+
+            - name: DATABASE_NAME
+              value: post_db

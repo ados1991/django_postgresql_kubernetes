@@ -1,0 +1,14 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: minikube-ingress
+  annotations:
+spec:
+  rules:
+  - host: post.local
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: post-service
+          servicePort: 8000
