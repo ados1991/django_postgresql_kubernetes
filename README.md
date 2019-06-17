@@ -1,5 +1,34 @@
 # Bluenove Technical Test
 
+##
+
+hello, vous pouvez tester sur le déploiement sur mon lab kubernetes de test que j'ai déployé.
+Dsl, mais postgresql ne passes pas sur kubesail. Job de déploiment qui tourne à l'infini et qui tombe en timeout au bout de deux heures.
+
+```
+http://51.254.134.146:8001/api/v1/namespaces/kube-system/services/http:kubernetes-dashboard:/proxy/#!/overview?namespace=default
+```
+
+Je vous fais confiance. Vous pouvez supprimer les anciens workloads, et les regénérer à partir de ceux qui sont présents dans le dossier kubernetes.
+
+par contre pensez à respecter l'ordre de déploiment suivant :
+
+-   postgresql/postgresql_secret.yml
+-   postgresql/postgresql_volume.yml
+-   postgresql/postgresql_volume_claim.yml
+-   postgresql/postgresql_deployment.yml
+-   postgresql/postgresql_service.yml
+-   backend/backend_migration_job.yml
+-   backend/backend_deployment.yml
+-   backend/backend_service.yml
+-   backend/backend_ingress.yml
+
+Une fois fait vous pouvez tester l'application avec cette url :
+
+http://postapp.adossou.fr/posts
+
+Si vous avez un souci vous pouvez me contacter.
+
 ## Introduction
 
 If you are a front-end developer, please see the section Front-End, if you are a Back-End developer, please see the section Back-End and if you are a fullstack developer, start with the back-end test and then use it for your front-end test.
