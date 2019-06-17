@@ -3,9 +3,10 @@ kind: Ingress
 metadata:
   name: minikube-ingress
   annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - host: post.local
+  - host: postapp.adossou.fr
     http:
       paths:
       - path: /
