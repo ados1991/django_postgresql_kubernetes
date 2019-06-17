@@ -15,12 +15,5 @@ class get_delete_update_post(RetrieveUpdateDestroyAPIView):
 class get_post_posts(ListCreateAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
-    filterset_fields = ('user_id',)
+    filterset_fields = ('userId',)
 
-    # Create a new post
-    def post(self, request, *args, **kwargs):
-        serializer = PostSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

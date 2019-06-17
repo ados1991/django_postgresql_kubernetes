@@ -13,16 +13,16 @@ class TestPosts:
         assert len(response.json()) == 0
 
     def test_add_post_should_succeed(self, client):
-        data = {'title': 'title1', 'body': 'body1', 'user_id': 1}
+        data = {'title': 'title1', 'body': 'body1', 'userId': 1}
         response = client.post('/posts', data=data, content_type='application/json')
         assert response.status_code == 201
 
-    def test_filter_posts_should_return_all_posts_belongs_to_specified_user_id(self, client, seed_data_for_api):
-        test_user_id = 4
-        response = client.get('/posts', {'user_id': test_user_id})
+    def test_filter_posts_should_return_all_posts_belongs_to_specified_userId(self, client, seed_data_for_api):
+        test_userId = 4
+        response = client.get('/posts', {'userId': test_userId})
         results = response.json()
         assert len(results) == 2
-        assert all(x['user_id'] == test_user_id for x in results)
+        assert all(x['userId'] == test_userId for x in results)
 
     def test_get_specified_post_should_succeed(self, client, seed_data_for_api):
         post_id = 1
